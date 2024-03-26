@@ -1,0 +1,37 @@
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "oman@gmail.com",
+  "password": "123456"
+}
+
+###
+POST http://localhost:3000/vendor-payment
+Content-Type: application/json
+
+{
+  "Series": "3298",
+  "DocType": "rAccount",
+  "HandWritten": "tNO",
+  "Printed": "tNO",
+  "DocDate": "2024-03-15",
+  "DueDate": "2024-03-15",
+  "TaxDate": "2024-03-15",
+  "Remarks": "Pertanggung jawaban Advance Agung Wibowo",
+  "JournalRemarks": "Pertanggung jawaban advance Agung Wibowo",
+  "U_MIS_PayType": "2",
+  "U_MIS_Req": "Agung",
+  "U_MIS_Signature1": "A",
+  "U_MIS_Signature2": "B",
+  "CashAccount": null,
+  "DocCurrency": "IDR",
+  "CheckAccount": null,
+  "CashSum": 0,
+  "CashSumFC": 0,
+  "CashSumSys": 0,
+  "TransferAccount": "11409002",
+  "TransferSum": 1000000.0,
+  "DocRate": 0.0,
+  "Reference1": "248810002"
+}

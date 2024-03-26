@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String @unique
+  hash  String
+
+  firstName String?
+  lastName  String?
+}
+
+model VendorPayment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Series           String?
+  DocType          String?
+  HandWritten      String?
+  Printed          String?
+  DocDate          String?
+  DueDate          String?
+  TaxDate          String?
+  Remarks          String?
+  JournalRemarks   String?
+  U_MIS_PayType    String?
+  U_MIS_Req        String?
+  U_MIS_Signature1 String?
+  U_MIS_Signature2 String?
+  CashAccount      String?
+  DocCurrency      String?
+  CheckAccount     String?
+  CashSum          Int?
+  CashSumFC        Int?
+  CashSumSys       Int?
+  TransferAccount  String?
+  TransferSum      Int?
+  DocRate          Int?
+  Reference1       String?
+
+  PaymentAccount PaymentAccount[]
+
+  @@map("vendor_payments")
+}
+
+model PaymentAccount {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  LineNum            Int?
+  AccountCode        String?
+  Decription         String?
+  ProfitCenter       String?
+  ProjectCode        String?
+  SumPaid            Int?
+  SumPaidFC          Int?
+  U_MIS_CCDepartment String?
+  U_MIS_BPCode       String?
+  U_MIS_BPName       String?
+
+  VendorPaymentId Int
+  VendorPayment   VendorPayment @relation(fields: [VendorPaymentId], references: [id])
+
+  @@map("payment_accounts")
+}
